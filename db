@@ -1,0 +1,126 @@
+drop database web;
+create database web;
+
+use web;
+
+create table users(
+    id int not null AUTO_INCREMENT primary key,
+    name char(30) not null,
+    username varchar(15) not null unique,
+    email varchar(100) not null unique,
+    password varchar(200) not null,
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    profileImg varchar(200) not null
+);
+
+create table blogs(
+    id int not null AUTO_INCREMENT primary key,
+    title varchar(250) not null ,
+    description varchar(2500) not null,
+    category varchar(50) not null,
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    userId int not null,
+    likeCount int not null DEFAULT 0,
+    viewCount int not null DEFAULT 0,
+    commentCount int not null DEFAULT 0,
+    FOREIGN KEY (userId) REFERENCES users(id) on delete cascade
+);
+
+create table likes(
+    id int not null AUTO_INCREMENT primary key,
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    userId int not null, 
+    blogId int not null,
+    FOREIGN KEY (userId) REFERENCES users(id) on delete cascade ,
+    FOREIGN KEY (blogId) REFERENCES blogs(id) on delete cascade
+);
+
+create table comments(
+    id int not null AUTO_INCREMENT primary key,
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    userId int not null, 
+    blogId int not null,
+    description varchar(250) not null,
+    FOREIGN KEY (userId) REFERENCES users(id) on delete cascade ,
+    FOREIGN KEY (blogId) REFERENCES blogs(id) on delete cascade
+);
+
+
+// HACKATHON
+
+create database hackathon;
+use hackathon;
+
+create table users(
+    id int not null AUTO_INCREMENT primary key,
+    name char(30) not null,
+    username varchar(15) not null unique,
+    email varchar(100) not null unique,
+    password varchar(200) not null,
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    phone varchar(15) not null unique,
+    plate varchar(15) unique,
+    brand varchar(15) ,
+    color varchar(15) ,
+    profileImg varchar(500) not null,
+    category varchar(50) not null
+);
+
+create table carEntry(
+    id int not null AUTO_INCREMENT primary key,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    plate varchar(15) not null,
+    carImg varchar(500) not null,
+    category varchar(20) not null,
+    color varchar(20),
+    brand varchar(20),
+    year varchar(20),
+    makeModel varchar(20)
+);
+
+create table carExit(
+    id int not null AUTO_INCREMENT primary key,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    plate varchar(15) not null ,
+    carImg varchar(500) not null,
+    category varchar(20) not null,
+    color varchar(20),
+    brand varchar(20),
+    year varchar(20),
+    makeModel varchar(20)
+);
+
+create table carInside(
+    id int not null AUTO_INCREMENT primary key,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    plate varchar(15) not null unique,
+    carImg varchar(500) not null,
+    category varchar(20) not null,
+    color varchar(20),
+    brand varchar(20),
+    year varchar(20),
+    makeModel varchar(20)
+);
+
+
+
+
+{
+	"user" : {
+		"name" : " Amal",
+		"username" : "Amal",
+		"email" : "amal.rajan@vitap.ac.in",
+		"password" : "amal",
+		"phone" : "7896541230",
+		"plate" : "AS01AD5468",
+		"category" : "security",
+        "brand" : "Audi",
+        "color" : "Black"
+	}
+}
+// color,brand,body_type,year,make_model
