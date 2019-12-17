@@ -124,7 +124,29 @@ router.get('/carsInsideResidence', (req, res) => {
             }
         })
     }).then(function(result){
-        res.send(result);
+        res.send([
+                {
+                  "car_no": "AP25TR4237",
+                  "position": "Still Inside",
+                  "car_belonging": "Resident's",
+                  "time": "15/12/19 | 15:10 - ",
+                  "color_label": "#00FF00"
+                },
+                {
+                  "car_no": "AP14TO1427",
+                  "position": "Went Out",
+                  "car_belonging": "Taxi/Cab",
+                  "color_label": "#FB940B",
+                  "time": "15/12/19 | 15:10 - 15/12/19 | 15:20 "
+                },
+                {
+                  "car_no": "TN04TR6352",
+                  "position": "Went Out",
+                  "car_belonging": "Private",
+                  "color_label": "#FB9",
+                  "time": "15/12/19 | 15:10 - 16/12/19 | 06:20 "
+                }
+              ]);
     },function(err){
         console.log(err);
         res.sendStatus(401);
