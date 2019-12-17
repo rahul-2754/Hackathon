@@ -9,7 +9,7 @@ router.use(cors());
 
 var connection = mysql.createConnection({
     host: 'localhost',
-    user: 'rahul',
+    user: 'root',
     password: 'rahul',
     database: 'hackathon'
 });
