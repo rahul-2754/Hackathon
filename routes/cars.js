@@ -115,7 +115,7 @@ router.post('/exit', (req, res) => {
 
 router.get('/carsInsideResidence', (req, res) => {
     var promise1 = new Promise(function (resolve, reject) {
-        connection.query('select plate from carInside where category = "residence" order by created_at desc', (err, result) => {
+        connection.query('select plate from carInside where category = "resident" order by created_at desc', (err, result) => {
             if (err) {
                 reject(err);
             }
