@@ -126,7 +126,7 @@ router.get('/carsInsideResidence', (req, res) => {
     }).then(function(result){
         res.send([
                 {
-                  "car_no": "AP25TR4237",
+                  "car_no": result[0].plate,
                   "position": "Still Inside",
                   "car_belonging": "Resident's",
                   "time": "15/12/19 | 15:10 - ",
